@@ -16,19 +16,31 @@ public class DialogueManager {
         scriptFolder = new File(plugin.getDataFolder(), "scripts");
         this.plugin = plugin;
         if (!scriptFolder.exists()) {
-            scriptFolder.mkdir();
+            plugin.getLogger().info("Scripts folder does not exist. Creating.");
+            if (!scriptFolder.mkdir()) {
+                plugin.getLogger().warning("Error: could not create scripts folder.");
+            }
         }
         loadScripts();
     }
 
     public void loadScripts() {
         scripts = new HashMap<>();
-        for (File scriptFile : scriptFolder.listFiles((File dir, String name)
-                -> name.matches(".*\\.yml"))) {
-            String id = scriptFile.getName().substring(0, scriptFile.getName().indexOf('.'));
-            scripts.put(id, new Script(YamlConfiguration.loadConfiguration(scriptFile)));
+        if (scriptFolder.exists()) {
+            File[] scriptsFiles = scriptFolder.listFiles((File dir, String name)
+                    -> name.matches(".*\\.yml"));
+            if (scriptsFiles != null) {
+                for (File scriptFile : scriptsFiles) {
+                    String id = scriptFile.getName().substring(0, scriptFile.getName().indexOf('.'));
+                    scripts.put(id, new Script(YamlConfiguration.loadConfiguration(scriptFile)));
+                }
+            } else {
+                plugin.getLogger().warning("Error reading scripts folder.");
+            }
+            plugin.getLogger().info("Scripts loaded.");
+        } else {
+            plugin.getLogger().warning("Scripts folder did not exist!");
         }
-        plugin.getLogger().info("Scripts loaded.");
     }
 
     public void reloadScripts() {
@@ -40,7 +52,7 @@ public class DialogueManager {
                 scripts.remove(id);
             }
         }
-        plugin.getLogger().info("Scripts reloaded");
+        plugin.getLogger().info("Scripts reloaded.");
     }
 
     public Script getScript(String id) {
