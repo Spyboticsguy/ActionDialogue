@@ -20,4 +20,12 @@ public class Script {
             choices.put(choice, new ChoiceLine(script.getConfigurationSection("choices." + choice)));
         }
     }
+
+    public Line getLine(String id) {
+        return lines.get(id);
+    }
+
+    public ChoiceLine getChoiceLine(String id) {
+        return choices.get(id);
+    }
 }

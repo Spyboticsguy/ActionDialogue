@@ -18,4 +18,16 @@ public class Line {
         }
         effects = line.getConfigurationSection("effects");
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public ConfigurationSection getEffects() {
+        return effects;
+    }
+
+    public Map<String, ConfigurationSection> getLinks() {
+        return new HashMap<>(links);
+    }
 }

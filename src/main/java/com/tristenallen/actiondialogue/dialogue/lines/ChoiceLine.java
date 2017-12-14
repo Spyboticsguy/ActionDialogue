@@ -12,4 +12,8 @@ public class ChoiceLine {
             choices.put(ChoiceType.valueOf(type), new Choice(choice.getConfigurationSection(type)));
         }
     }
+
+    public Choice getChoice(ChoiceType choiceType) {
+        return choices.get(choiceType);
+    }
 }

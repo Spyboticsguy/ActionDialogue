@@ -42,4 +42,8 @@ public class DialogueManager {
         }
         plugin.getLogger().info("Scripts reloaded");
     }
+
+    public Script getScript(String id) {
+        return scripts.get("id");
+    }
 }

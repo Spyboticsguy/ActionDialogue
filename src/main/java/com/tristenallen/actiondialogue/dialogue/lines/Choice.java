@@ -10,4 +10,12 @@ public class Choice {
         message = choice.getString("message");
         conditions = choice.getConfigurationSection("conditions");
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public ConfigurationSection getConditions() {
+        return conditions;
+    }
 }
