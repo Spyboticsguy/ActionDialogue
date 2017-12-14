@@ -17,7 +17,7 @@ public class DialogueManager {
         this.plugin = plugin;
         if (!scriptFolder.exists()) {
             plugin.getLogger().info("Scripts folder does not exist. Creating.");
-            if (!scriptFolder.mkdir()) {
+            if (!scriptFolder.mkdirs()) {
                 plugin.getLogger().warning("Error: could not create scripts folder.");
             }
         }
