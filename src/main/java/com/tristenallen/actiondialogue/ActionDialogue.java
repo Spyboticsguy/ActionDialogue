@@ -15,4 +15,8 @@ public class ActionDialogue extends JavaPlugin {
     public void onDisable() {
 
     }
+
+    public DialogueManager getDialogueManager() {
+        return dialogueManager;
+    }
 }

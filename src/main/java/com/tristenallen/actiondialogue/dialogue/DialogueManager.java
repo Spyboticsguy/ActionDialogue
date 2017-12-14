@@ -56,6 +56,6 @@ public class DialogueManager {
     }
 
     public Script getScript(String id) {
-        return scripts.get("id");
+        return scripts.get(id);
     }
 }
